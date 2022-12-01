@@ -5,8 +5,8 @@ namespace utils
 
 FileHandler::FileHandler(std::string filepath)
 {
-    stream.open(filepath);
-    if(!stream)
+    open(filepath);
+    if(!is_open())
     {
         throw std::runtime_error("Unable to open file.");
     }
@@ -14,7 +14,7 @@ FileHandler::FileHandler(std::string filepath)
 
 FileHandler::~FileHandler()
 {
-    stream.close();
+    close();
 }
 
 }  // namespace utils

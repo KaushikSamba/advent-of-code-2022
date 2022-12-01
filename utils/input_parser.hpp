@@ -1,3 +1,4 @@
+#include <functional>
 #include <istream>
 #include <vector>
 
@@ -37,6 +38,37 @@ template<typename T> std::vector<T> parseSpaceSeparatedLine(std::istream& stream
 }
 
 std::vector<std::vector<std::string>> parseNewLineSeparatedInputs(std::istream& stream);
+
+template<typename T>
+std::vector<std::vector<T>> parseNewLineSeparatedInputsToType(std::istream&                        stream,
+                                                              std::function<T(std::string const&)> transformationFunc)
+{
+    std::string                 line;
+    std::vector<T>              input;
+    std::vector<std::vector<T>> inputNewLineSeparated;
+    while(std::getline(stream, line, '\n'))
+    {
+        if(line.empty())
+        {
+            // std::cout << "Encountered empty line!\n";
+            if(!input.empty())
+            {
+                inputNewLineSeparated.push_back(input);
+                input.clear();
+            }
+        }
+        else
+        {
+            input.push_back(transformationFunc(line));
+            // std::cout << "Pushed line: " << line << '\n';
+        }
+    }
+    if(!input.empty())  // If the last block does not have a trailing new line.
+    {
+        inputNewLineSeparated.push_back(input);
+    }
+    return inputNewLineSeparated;
+}
 
 }  // namespace parsing
 }  // namespace utils

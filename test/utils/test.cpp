@@ -58,6 +58,40 @@ TEST(InputParserTest, NewLineSeparatedInputs)
     EXPECT_EQ(utils::parsing::parseNewLineSeparatedInputs(ss), expectedResult);
 }
 
+TEST(NewLineSeparatedInputs, NewLineSeparatedInputsToInt)
+{
+    std::string input {
+        R""""(
+1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000
+)""""};
+    std::vector<std::vector<int>> expectedResult {
+        {1000, 2000, 3000},
+        {4000},
+        {5000, 6000},
+        {7000, 8000, 9000},
+        {10000},
+    };
+
+    std::stringstream ss {input};
+    auto              parsedResult = utils::parsing::parseNewLineSeparatedInputsToType<int>(
+        ss, [](std::string const& str) { return std::stoi(str); });
+
+    EXPECT_EQ(parsedResult, expectedResult);
+}
+
 TEST(InputParserTest, SpaceSeparatedString)
 {
     std::string               input {"22 13 17 11  0"};

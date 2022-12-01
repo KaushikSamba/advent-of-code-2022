@@ -20,3 +20,4 @@ include(GoogleTest)
 
 add_subdirectory(utils)
 add_subdirectory(test)
+add_subdirectory(day-1)

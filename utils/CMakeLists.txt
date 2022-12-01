@@ -4,4 +4,5 @@ add_library(file-utils
     input_parser.cpp
 )
 
-target_include_directories(file-utils INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+get_filename_component(PARENT_DIR ${CMAKE_CURRENT_SOURCE_DIR} DIRECTORY)
+target_include_directories(file-utils INTERFACE ${PARENT_DIR})

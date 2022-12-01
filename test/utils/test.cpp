@@ -1,5 +1,5 @@
 #include <sstream>
-#include "input_parser.hpp"
+#include "utils/input_parser.hpp"
 #include <gtest/gtest.h>
 
 TEST(InputParserTest, CommaSeparatedLineNoCommaAtEnd)

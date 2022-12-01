@@ -1,6 +1,6 @@
 #include <iostream>
 #include "day-1-calorie-counting.hpp"
-#include "filehandler.hpp"
+#include "utils/filehandler.hpp"
 
 int main()
 {

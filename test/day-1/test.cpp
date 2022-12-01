@@ -1,5 +1,5 @@
 #include "day-1-calorie-counting.hpp"
-#include "filehandler.hpp"
+#include "utils/filehandler.hpp"
 #include <gtest/gtest.h>
 
 TEST(Day1Tests, AbleToReadInputFile)

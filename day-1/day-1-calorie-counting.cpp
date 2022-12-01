@@ -1,6 +1,6 @@
 #include "day-1-calorie-counting.hpp"
 #include <numeric>
-#include "input_parser.hpp"
+#include "utils/input_parser.hpp"
 
 namespace calories
 {

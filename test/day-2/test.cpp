@@ -36,7 +36,7 @@ TEST(Day2Tests, ComputeTotalScore)
 
     auto parsedInputs = strategy::parseInputs(inputFile);
 
-    auto result = strategy::calculateScoreForAllRounds(parsedInputs);
+    auto result = strategy::calculateScoreForAllRounds(parsedInputs, &strategy::getScoreForRoundChoices);
     EXPECT_EQ(result, 15);
 }
 

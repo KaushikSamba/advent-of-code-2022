@@ -45,16 +45,18 @@ unsigned int getScoreForRoundChoices(RoundChoices const& roundChoices)
     return (static_cast<std::underlying_type_t<Score>>(score) + choiceScore);
 }
 
-unsigned int calculateScoreForAllRounds(AllRoundChoices const& allChoices)
+unsigned int calculateScoreForAllRounds(AllRoundChoices const&                                  allChoices,
+                                        std::function<unsigned int(RoundChoices const&)> const& scoringFunc)
 {
     // This doesn't work with the version of gcc I'm running.
     // TODO: Make a Docker container with the latest version of gcc so that I can play with the latest algorithms.
     // std::transform_reduce(allChoices.begin(), allChoices.end(), 0, std::plus(), getScoreForRoundChoices);
 
     return std::accumulate(
-        allChoices.begin(), allChoices.end(), 0, [](unsigned int const& a, strategy::RoundChoices const& b) {
-            return (a + getScoreForRoundChoices(b));
-        });
+        allChoices.begin(),
+        allChoices.end(),
+        0,
+        [&scoringFunc](unsigned int const& a, strategy::RoundChoices const& b) { return (a + scoringFunc(b)); });
 }
 
 unsigned int getScoreForRoundChoiceAndOutcome(RoundChoices const& roundChoices)

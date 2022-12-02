@@ -8,6 +8,6 @@ int main()
 
     auto parsedInputs = strategy::parseInputs(inputFile);
 
-    auto part1_result = strategy::calculateScoreForAllRounds(parsedInputs);
+    auto part1_result = strategy::calculateScoreForAllRounds(parsedInputs, &strategy::getScoreForRoundChoices);
     std::cout << "Result for part 1 = " << part1_result << std::endl;
 }

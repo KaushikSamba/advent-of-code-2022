@@ -12,11 +12,10 @@ TEST(Day2Tests, InputParsing)
 {
     utils::FileHandler inputFile {CURRENT_SOURCE_DIR "/test-input.txt"};
 
-    using strategy::Choices;
     strategy::AllRoundChoices expectedResult {
-        {Choices::A, Choices::Y},
-        {Choices::B, Choices::X},
-        {Choices::C, Choices::Z},
+        {'A', 'Y'},
+        {'B', 'X'},
+        {'C', 'Z'},
     };
 
     auto parsedInputs = strategy::parseInputs(inputFile);
@@ -26,9 +25,9 @@ TEST(Day2Tests, InputParsing)
 
 TEST(Day2Tests, ComputeScore)
 {
-    EXPECT_EQ(strategy::getScoreForRoundChoices({strategy::Choices::A, strategy::Choices::Y}), 8);
-    EXPECT_EQ(strategy::getScoreForRoundChoices({strategy::Choices::B, strategy::Choices::X}), 1);
-    EXPECT_EQ(strategy::getScoreForRoundChoices({strategy::Choices::C, strategy::Choices::Z}), 6);
+    EXPECT_EQ(strategy::getScoreForRoundChoices({'A', 'Y'}), 8);
+    EXPECT_EQ(strategy::getScoreForRoundChoices({'B', 'X'}), 1);
+    EXPECT_EQ(strategy::getScoreForRoundChoices({'C', 'Z'}), 6);
 }
 
 TEST(Day2Tests, ComputeTotalScore)

@@ -12,7 +12,7 @@ AllRoundChoices parseInputs(std::istream& stream)
         std::stringstream sub_ss {line};
         auto              vec = utils::parsing::parseSpaceSeparatedLine<char>(sub_ss);
 
-        return std::make_pair(constants::CHAR_TO_CHOICE.at(vec.at(0)), constants::CHAR_TO_CHOICE.at(vec.at(1)));
+        return std::make_pair(vec.at(0), vec.at(1));
     };
 
     return utils::parsing::parseSingleLineInputsToType<RoundChoices>(stream, func);
@@ -26,7 +26,7 @@ unsigned int getScoreForRoundChoices(RoundChoices const& roundChoices)
     {
         score = Score::WIN;
     }
-    else if(roundChoices.first == roundChoices.second)  // Both players played the same thing
+    else if(roundChoices.first == (roundChoices.second - ('X' - 'A')))  // Both players played the same thing
     {
         score = Score::DRAW;
     }
@@ -34,9 +34,10 @@ unsigned int getScoreForRoundChoices(RoundChoices const& roundChoices)
     {
         score = Score::LOSS;
     }
-    return (static_cast<std::underlying_type_t<Score>>(score) +
-            static_cast<std::underlying_type_t<Choices>>(roundChoices.second)  // The value I played.
-    );
+
+    unsigned int choiceScore = roundChoices.second - 'X' + 1;  // Score based on the option I played.
+
+    return (static_cast<std::underlying_type_t<Score>>(score) + choiceScore);
 }
 
 unsigned int calculateScoreForAllRounds(AllRoundChoices const& allChoices)

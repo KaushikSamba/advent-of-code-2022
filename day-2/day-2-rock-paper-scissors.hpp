@@ -5,13 +5,17 @@
 #include <utility>
 #include <vector>
 #include "constants.hpp"
+
 namespace strategy
 {
 
-using RoundChoices    = std::pair<Choices, Choices>;
 using AllRoundChoices = std::vector<RoundChoices>;
 
 AllRoundChoices parseInputs(std::istream& stream);
+
+unsigned int getScoreForRoundChoices(RoundChoices const& roundChoices);
+
+unsigned int calculateScoreForAllRounds(AllRoundChoices const& allChoices);
 
 }  // namespace strategy
 

@@ -39,3 +39,10 @@ TEST(Day2Tests, ComputeTotalScore)
     auto result = strategy::calculateScoreForAllRounds(parsedInputs);
     EXPECT_EQ(result, 15);
 }
+
+TEST(Day2Tests, ComputeScoreGivenChoiceAndOutcome)
+{
+    EXPECT_EQ(strategy::getScoreForRoundChoiceAndOutcome({'A', 'Y'}), 4);
+    EXPECT_EQ(strategy::getScoreForRoundChoiceAndOutcome({'B', 'X'}), 1);
+    EXPECT_EQ(strategy::getScoreForRoundChoiceAndOutcome({'C', 'Z'}), 7);
+}

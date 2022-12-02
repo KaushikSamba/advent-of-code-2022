@@ -15,6 +15,8 @@ AllRoundChoices parseInputs(std::istream& stream);
 
 unsigned int getScoreForRoundChoices(RoundChoices const& roundChoices);
 
+unsigned int getScoreForRoundChoiceAndOutcome(RoundChoices const& roundChoices);
+
 unsigned int calculateScoreForAllRounds(AllRoundChoices const& allChoices);
 
 }  // namespace strategy

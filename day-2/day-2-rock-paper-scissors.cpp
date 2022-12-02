@@ -57,4 +57,37 @@ unsigned int calculateScoreForAllRounds(AllRoundChoices const& allChoices)
         });
 }
 
+unsigned int getScoreForRoundChoiceAndOutcome(RoundChoices const& roundChoices)
+{
+    Score score;
+    switch(roundChoices.second)
+    {
+    case 'X':
+        score = Score::LOSS;
+        break;
+    case 'Y':
+        score = Score::DRAW;
+        break;
+    case 'Z':
+        score = Score::WIN;
+        break;
+    }
+
+    static const std::map<std::pair<char, Score>, char> combinations {
+        {std::make_pair('A', Score::WIN), 'Y'},
+        {std::make_pair('A', Score::DRAW), 'X'},
+        {std::make_pair('A', Score::LOSS), 'Z'},
+        {std::make_pair('B', Score::WIN), 'Z'},
+        {std::make_pair('B', Score::DRAW), 'Y'},
+        {std::make_pair('B', Score::LOSS), 'X'},
+        {std::make_pair('C', Score::WIN), 'X'},
+        {std::make_pair('C', Score::DRAW), 'Z'},
+        {std::make_pair('C', Score::LOSS), 'Y'},
+    };
+
+    unsigned int choiceScore = combinations.at(std::make_pair(roundChoices.first, score)) - 'X' + 1;
+
+    return (static_cast<std::underlying_type_t<Score>>(score) + choiceScore);
+}
+
 }  // namespace strategy

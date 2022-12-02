@@ -20,9 +20,14 @@ AllRoundChoices parseInputs(std::istream& stream)
 
 unsigned int getScoreForRoundChoices(RoundChoices const& roundChoices)
 {
+    static const std::array<RoundChoices, 3> WINNING_PAIRS {
+        std::make_pair('A', 'Y'),  // Rock is beaten by paper
+        std::make_pair('B', 'Z'),  // Paper is beaten by scissors
+        std::make_pair('C', 'X'),  // Scissors is beaten by rock
+    };
+
     Score score;
-    if(std::find(constants::WINNING_PAIRS.begin(), constants::WINNING_PAIRS.end(), roundChoices) !=
-       constants::WINNING_PAIRS.end())
+    if(std::find(WINNING_PAIRS.begin(), WINNING_PAIRS.end(), roundChoices) != WINNING_PAIRS.end())
     {
         score = Score::WIN;
     }

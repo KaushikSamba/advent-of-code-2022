@@ -39,6 +39,9 @@ template<typename T> std::vector<T> parseSpaceSeparatedLine(std::istream& stream
 
 std::vector<std::vector<std::string>> parseNewLineSeparatedInputs(std::istream& stream);
 
+/*!
+ * @brief Parses inputs where multiple lines constitute one entry, separated by a blank line.
+ */
 template<typename T>
 std::vector<std::vector<T>> parseNewLineSeparatedInputsToType(std::istream&                        stream,
                                                               std::function<T(std::string const&)> transformationFunc)
@@ -68,6 +71,23 @@ std::vector<std::vector<T>> parseNewLineSeparatedInputsToType(std::istream&     
         inputNewLineSeparated.push_back(input);
     }
     return inputNewLineSeparated;
+}
+
+template<typename T>
+std::vector<T> parseSingleLineInputsToType(std::istream&                        stream,
+                                           std::function<T(std::string const&)> transformationFunc)
+{
+    std::string    line;
+    std::vector<T> parsed;
+    while(std::getline(stream, line, '\n'))
+    {
+        if(line.empty())
+        {
+            continue;
+        }
+        parsed.push_back(transformationFunc(line));
+    }
+    return parsed;
 }
 
 }  // namespace parsing

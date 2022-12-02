@@ -99,3 +99,55 @@ TEST(InputParserTest, SpaceSeparatedString)
     std::vector<unsigned int> expectedResult {22, 13, 17, 11, 0};
     EXPECT_EQ(utils::parsing::parseSpaceSeparatedLine<unsigned int>(ss), expectedResult);
 }
+
+class SpaceSeparatedLinesTests : public ::testing::Test
+{
+protected:
+    SpaceSeparatedLinesTests()
+    {
+        std::string input {
+            R""""(
+A Y
+B X
+C Z
+)""""};
+        ss << input;
+    }
+    std::stringstream ss;
+};
+
+
+TEST_F(SpaceSeparatedLinesTests, ToCharVector)
+{
+    std::vector<std::vector<char>> expectedResult {
+        {'A', 'Y'},
+        {'B', 'X'},
+        {'C', 'Z'},
+    };
+
+    auto func = [](std::string const& line) {
+        std::stringstream sub_ss {line};
+        return utils::parsing::parseSpaceSeparatedLine<char>(sub_ss);
+    };
+
+    auto parsed = utils::parsing::parseSingleLineInputsToType<std::vector<char>>(ss, func);
+    EXPECT_EQ(parsed, expectedResult);
+}
+
+TEST_F(SpaceSeparatedLinesTests, ToIntPair)
+{
+    std::vector<std::pair<int, int>> expectedResult {
+        {65, 89},
+        {66, 88},
+        {67, 90},
+    };
+
+    auto func = [](std::string const& line) {
+        std::stringstream sub_ss {line};
+        auto              vec = utils::parsing::parseSpaceSeparatedLine<char>(sub_ss);
+        return std::make_pair(static_cast<int>(vec.at(0)), static_cast<int>(vec.at(1)));
+    };
+
+    auto parsed = utils::parsing::parseSingleLineInputsToType<std::pair<int, int>>(ss, func);
+    EXPECT_EQ(parsed, expectedResult);
+}

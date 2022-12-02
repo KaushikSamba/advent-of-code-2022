@@ -46,3 +46,13 @@ TEST(Day2Tests, ComputeScoreGivenChoiceAndOutcome)
     EXPECT_EQ(strategy::getScoreForRoundChoiceAndOutcome({'B', 'X'}), 1);
     EXPECT_EQ(strategy::getScoreForRoundChoiceAndOutcome({'C', 'Z'}), 7);
 }
+
+TEST(Day2Tests, ComputeTotalScorePart2)
+{
+    utils::FileHandler inputFile {CURRENT_SOURCE_DIR "/test-input.txt"};
+
+    auto parsedInputs = strategy::parseInputs(inputFile);
+
+    auto result = strategy::calculateScoreForAllRounds(parsedInputs, &strategy::getScoreForRoundChoiceAndOutcome);
+    EXPECT_EQ(result, 12);
+}

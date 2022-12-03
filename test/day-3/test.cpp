@@ -92,3 +92,24 @@ TEST(Day3Tests, ProcessInputs)
 
     EXPECT_EQ(rucksack::processAllRucksacks(parsed), 157);
 }
+
+TEST(Day3Tests, ProcessGroup)
+{
+    {
+        std::vector<std::string> group {
+            "vJrwpWtwJgWrhcsFMMfFFhFp",
+            "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+            "PmmdzqPrVvPwwTWBwg",
+        };
+        EXPECT_EQ(rucksack::processRucksackGroup(group.begin(), group.end()), 18);
+    }
+
+    {
+        std::vector<std::string> group {
+            "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+            "ttgJtRGJQctTZtZT",
+            "CrZsJsPPZsGzwwsLwLmpwMDw",
+        };
+        EXPECT_EQ(rucksack::processRucksackGroup(group.begin(), group.end()), 52);
+    }
+}

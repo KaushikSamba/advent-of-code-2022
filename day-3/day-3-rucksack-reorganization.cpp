@@ -1,6 +1,7 @@
 #include "day-3-rucksack-reorganization.hpp"
 #include <cctype>
 #include <functional>
+#include <numeric>
 #include "utils/input_parser.hpp"
 
 namespace rucksack
@@ -23,16 +24,25 @@ std::vector<std::string> splitCompartments(std::string const& contents, std::siz
     return splits;
 }
 
-char findCommonItems(std::vector<std::string> compartments)
+char findCommonItems(std::vector<std::string> const& compartments)
 {
-    if(compartments.size() > 2)
+    std::string intersection = compartments.at(0);
+    std::sort(intersection.begin(), intersection.end());
+
+    std::for_each(compartments.begin() + 1, compartments.end(), [&intersection](std::string str) {
+        std::sort(str.begin(), str.end());
+        std::string result;
+        std::set_intersection(
+            str.begin(), str.end(), intersection.begin(), intersection.end(), std::back_inserter(result));
+        intersection = result;
+    });
+    auto last = std::unique(intersection.begin(), intersection.end());
+    if(std::distance(intersection.begin(), last) > 1)
     {
-        throw std::logic_error("Should only be 2 compartments!");
+        throw std::runtime_error("More than one common letter!");
     }
 
-    auto pos = compartments.at(0).find_first_of(compartments.at(1));
-
-    return compartments.at(0).at(pos);
+    return intersection.at(0);
 }
 
 unsigned int calculatePriority(char ch)

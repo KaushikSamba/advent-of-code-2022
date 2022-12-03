@@ -44,7 +44,18 @@ TEST(Day3Tests, CompareSubstrings)
 {
     EXPECT_EQ(rucksack::findCommonItems(std::vector<std::string> {"vJrwpWtwJgWr", "hcsFMMfFFhFp"}), 'p');
     EXPECT_EQ(rucksack::findCommonItems(std::vector<std::string> {"jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"}), 'L');
-    EXPECT_EQ(rucksack::findCommonItems(std::vector<std::string> {"abcde", "defgh"}), 'd');
+    EXPECT_EQ(rucksack::findCommonItems(std::vector<std::string> {
+                  "vJrwpWtwJgWrhcsFMMfFFhFp",
+                  "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+                  "PmmdzqPrVvPwwTWBwg",
+              }),
+              'r');
+    EXPECT_EQ(rucksack::findCommonItems(std::vector<std::string> {
+                  "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+                  "ttgJtRGJQctTZtZT",
+                  "CrZsJsPPZsGzwwsLwLmpwMDw",
+              }),
+              'Z');
 }
 
 TEST(Day3Tests, ConvertCharToPriority)

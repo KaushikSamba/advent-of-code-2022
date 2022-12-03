@@ -9,5 +9,5 @@ int main()
     auto parsed = rucksack::parseInputs(inputFile);
 
     std::cout << "Result for part 1 = " << rucksack::processAllRucksacks(parsed) << std::endl;
-    std::cout << "Result for part 2 = " << std::endl;
+    std::cout << "Result for part 2 = " << rucksack::processAllRucksackGroups(parsed) << std::endl;
 }

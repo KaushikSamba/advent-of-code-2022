@@ -9,6 +9,8 @@ namespace rucksack
 std::vector<std::string> parseInputs(std::istream& stream);
 
 std::vector<std::string> splitCompartments(std::string const& contents, std::size_t numParts);
+
+char findCommonItems(std::vector<std::string> compartments);
 }  // namespace rucksack
 
 #endif  // DAY_3_RUCKSACK_REORGANIZATION_HPP

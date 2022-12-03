@@ -21,4 +21,16 @@ std::vector<std::string> splitCompartments(std::string const& contents, std::siz
     }
     return splits;
 }
+
+char findCommonItems(std::vector<std::string> compartments)
+{
+    if(compartments.size() > 2)
+    {
+        throw std::logic_error("Should only be 2 compartments!");
+    }
+
+    auto pos = compartments.at(0).find_first_of(compartments.at(1));
+
+    return compartments.at(0).at(pos);
+}
 }  // namespace rucksack

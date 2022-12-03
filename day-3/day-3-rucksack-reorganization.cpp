@@ -50,4 +50,20 @@ unsigned int calculatePriority(char ch)
         throw std::logic_error("Should not be expecting a non-alphabet char");
     }
 }
+
+unsigned int processOneRucksack(std::string const& rucksackContents)
+{
+    auto pieces = splitCompartments(rucksackContents, 2);
+    auto item   = findCommonItems(pieces);
+    return calculatePriority(item);
+}
+
+unsigned int processAllRucksacks(std::vector<std::string> const& rucksacks)
+{
+    return std::accumulate(
+        rucksacks.begin(), rucksacks.end(), 0, [](unsigned int val, std::string const& rucksackContents) {
+            return (val + processOneRucksack(rucksackContents));
+        });
+}
+
 }  // namespace rucksack

@@ -82,4 +82,15 @@ unsigned int processRucksackGroup(std::vector<std::string>::const_iterator front
     return calculatePriority(findCommonItems({front, back}));
 }
 
+unsigned int processAllRucksackGroups(std::vector<std::string> const& rucksacks)
+{
+    unsigned int val = 0;
+    for(auto it = rucksacks.begin(); it != rucksacks.end(); std::advance(it, 3))
+    {
+        val = val + processRucksackGroup(it, std::next(it, 3));
+    }
+
+    return val;
+}
+
 }  // namespace rucksack

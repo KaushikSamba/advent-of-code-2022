@@ -113,3 +113,12 @@ TEST(Day3Tests, ProcessGroup)
         EXPECT_EQ(rucksack::processRucksackGroup(group.begin(), group.end()), 52);
     }
 }
+
+TEST(Day3Tests, ProcessInputsAsGroups)
+{
+    utils::FileHandler inputFile {CURRENT_SOURCE_DIR "/test-input.txt"};
+
+    auto parsed = rucksack::parseInputs(inputFile);
+
+    EXPECT_EQ(rucksack::processAllRucksackGroups(parsed), 70);
+}

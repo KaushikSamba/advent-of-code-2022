@@ -20,6 +20,8 @@ unsigned int processRucksackGroup(std::vector<std::string>::const_iterator front
                                   std::vector<std::string>::const_iterator back);
 
 unsigned int processAllRucksacks(std::vector<std::string> const& rucksacks);
+unsigned int processAllRucksackGroups(std::vector<std::string> const& rucksacks);
+
 }  // namespace rucksack
 
 #endif  // DAY_3_RUCKSACK_REORGANIZATION_HPP

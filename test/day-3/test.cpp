@@ -46,3 +46,14 @@ TEST(Day3Tests, CompareSubstrings)
     EXPECT_EQ(rucksack::findCommonItems(std::vector<std::string> {"jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"}), 'L');
     EXPECT_EQ(rucksack::findCommonItems(std::vector<std::string> {"abcde", "defgh"}), 'd');
 }
+
+TEST(Day3Tests, ConvertCharToPriority)
+{
+    EXPECT_EQ(rucksack::calculatePriority('p'), 16);
+    EXPECT_EQ(rucksack::calculatePriority('L'), 38);
+    EXPECT_EQ(rucksack::calculatePriority('P'), 42);
+    EXPECT_EQ(rucksack::calculatePriority('v'), 22);
+    EXPECT_EQ(rucksack::calculatePriority('t'), 20);
+    EXPECT_EQ(rucksack::calculatePriority('s'), 19);
+    EXPECT_THROW(rucksack::calculatePriority('!'), std::logic_error);
+}

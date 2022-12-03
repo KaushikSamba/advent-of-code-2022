@@ -39,3 +39,10 @@ TEST(Day3Tests, SplitStringIntoNParts)
         EXPECT_EQ(rucksack::splitCompartments("vJrwpWtwJgWrhcsFMMfFFhFp", 4), expected);
     }
 }
+
+TEST(Day3Tests, CompareSubstrings)
+{
+    EXPECT_EQ(rucksack::findCommonItems(std::vector<std::string> {"vJrwpWtwJgWr", "hcsFMMfFFhFp"}), 'p');
+    EXPECT_EQ(rucksack::findCommonItems(std::vector<std::string> {"jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"}), 'L');
+    EXPECT_EQ(rucksack::findCommonItems(std::vector<std::string> {"abcde", "defgh"}), 'd');
+}

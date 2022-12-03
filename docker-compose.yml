@@ -1,0 +1,8 @@
+version: '3'
+services:
+  develop:
+    image: 'advent-of-code-2022:0.1'
+    volumes:
+      - .:/code:rw
+    stdin_open: true
+    tty: true

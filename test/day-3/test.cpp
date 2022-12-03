@@ -57,3 +57,27 @@ TEST(Day3Tests, ConvertCharToPriority)
     EXPECT_EQ(rucksack::calculatePriority('s'), 19);
     EXPECT_THROW(rucksack::calculatePriority('!'), std::logic_error);
 }
+
+TEST(Day3Tests, ProcessEachRucksack)
+{
+    utils::FileHandler inputFile {CURRENT_SOURCE_DIR "/test-input.txt"};
+
+    auto parsed = rucksack::parseInputs(inputFile);
+
+    auto expectedValues = {16, 38, 42, 22, 20, 19};
+
+    for(auto it = std::make_pair(parsed.cbegin(), expectedValues.begin()); it.first != parsed.cend();
+        ++it.first, ++it.second)
+    {
+        EXPECT_EQ(rucksack::processOneRucksack(*it.first), *it.second);
+    }
+}
+
+TEST(Day3Tests, ProcessInputs)
+{
+    utils::FileHandler inputFile {CURRENT_SOURCE_DIR "/test-input.txt"};
+
+    auto parsed = rucksack::parseInputs(inputFile);
+
+    EXPECT_EQ(rucksack::processAllRucksacks(parsed), 157);
+}

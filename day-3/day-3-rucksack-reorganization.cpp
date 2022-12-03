@@ -1,4 +1,5 @@
 #include "day-3-rucksack-reorganization.hpp"
+#include <cctype>
 #include <functional>
 #include "utils/input_parser.hpp"
 
@@ -32,5 +33,21 @@ char findCommonItems(std::vector<std::string> compartments)
     auto pos = compartments.at(0).find_first_of(compartments.at(1));
 
     return compartments.at(0).at(pos);
+}
+
+unsigned int calculatePriority(char ch)
+{
+    if(std::islower(ch))
+    {
+        return ch - 'a' + 1;
+    }
+    else if(std::isupper(ch))
+    {
+        return ch - 'A' + 27;
+    }
+    else
+    {
+        throw std::logic_error("Should not be expecting a non-alphabet char");
+    }
 }
 }  // namespace rucksack

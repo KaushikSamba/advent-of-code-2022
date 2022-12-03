@@ -11,6 +11,8 @@ std::vector<std::string> parseInputs(std::istream& stream);
 std::vector<std::string> splitCompartments(std::string const& contents, std::size_t numParts);
 
 char findCommonItems(std::vector<std::string> compartments);
+
+unsigned int calculatePriority(char ch);
 }  // namespace rucksack
 
 #endif  // DAY_3_RUCKSACK_REORGANIZATION_HPP

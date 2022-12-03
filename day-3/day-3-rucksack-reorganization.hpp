@@ -16,6 +16,9 @@ unsigned int calculatePriority(char ch);
 
 unsigned int processOneRucksack(std::string const& rucksackContents);
 
+unsigned int processRucksackGroup(std::vector<std::string>::const_iterator front,
+                                  std::vector<std::string>::const_iterator back);
+
 unsigned int processAllRucksacks(std::vector<std::string> const& rucksacks);
 }  // namespace rucksack
 

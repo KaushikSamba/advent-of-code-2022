@@ -23,3 +23,19 @@ TEST(Day3Tests, ParseInputFile)
 
     EXPECT_EQ(rucksack::parseInputs(inputFile), expectedResult);
 }
+
+TEST(Day3Tests, SplitStringIntoNParts)
+{
+    {
+        std::vector<std::string> expected {"vJrwpWtwJgWr", "hcsFMMfFFhFp"};
+        EXPECT_EQ(rucksack::splitCompartments("vJrwpWtwJgWrhcsFMMfFFhFp", 2), expected);
+    }
+    {
+        std::vector<std::string> expected {"vJrwpWtw", "JgWrhcsF", "MMfFFhFp"};
+        EXPECT_EQ(rucksack::splitCompartments("vJrwpWtwJgWrhcsFMMfFFhFp", 3), expected);
+    }
+    {
+        std::vector<std::string> expected {"vJrwpW", "twJgWr", "hcsFMM", "fFFhFp"};
+        EXPECT_EQ(rucksack::splitCompartments("vJrwpWtwJgWrhcsFMMfFFhFp", 4), expected);
+    }
+}

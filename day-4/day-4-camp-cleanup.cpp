@@ -1,4 +1,5 @@
 #include "day-4-camp-cleanup.hpp"
+#include <numeric>
 #include <regex>
 #include <sstream>
 #include "utils/input_parser.hpp"
@@ -48,5 +49,12 @@ bool checkContainment(Assignment const& ass)
     {
         return (ass.first.end < ass.second.end);
     }
+}
+
+unsigned int processAllAssignments(std::vector<Assignment> const& assignments)
+{
+    return std::accumulate(assignments.begin(), assignments.end(), 0, [](unsigned int val, Assignment const& ass) {
+        return (val + checkContainment(ass));
+    });
 }
 }  // namespace cleanup

@@ -25,6 +25,9 @@ Assignment getAssignmentFromString(std::string const& str);
 std::vector<Assignment> parseInputs(std::istream& stream);
 
 bool checkContainment(Assignment const& ass);
+
+unsigned int processAllAssignments(std::vector<Assignment> const& assignments);
+
 }  // namespace cleanup
 
 #endif  // DAY_4_CAMP_CLEANUP_HPP

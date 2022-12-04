@@ -35,13 +35,18 @@ std::vector<Assignment> parseInputs(std::istream& stream)
 
 bool checkContainment(Assignment const& ass)
 {
-    if(ass.first.start <= ass.second.start)
+    if((ass.first.start == ass.second.start) or (ass.first.end == ass.second.end))
     {
-        return (ass.first.end >= ass.second.end);
+        return true;
+    }
+
+    if(ass.first.start < ass.second.start)
+    {
+        return (ass.first.end > ass.second.end);
     }
     else
     {
-        return (ass.first.end <= ass.second.end);
+        return (ass.first.end < ass.second.end);
     }
 }
 }  // namespace cleanup

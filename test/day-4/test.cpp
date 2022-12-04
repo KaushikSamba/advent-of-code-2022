@@ -45,4 +45,12 @@ TEST(Day4Tests, CheckContainment)
     EXPECT_TRUE(cleanup::checkContainment(std::make_pair(Range {2, 8}, Range {3, 7})));
     EXPECT_TRUE(cleanup::checkContainment(std::make_pair(Range {6, 6}, Range {4, 6})));
     EXPECT_FALSE(cleanup::checkContainment(std::make_pair(Range {2, 6}, Range {4, 8})));
+    EXPECT_TRUE(cleanup::checkContainment(std::make_pair(Range {86, 88}, Range {79, 88})));
+    EXPECT_FALSE(cleanup::checkContainment(std::make_pair(Range {67, 83}, Range {68, 84})));
+    EXPECT_TRUE(cleanup::checkContainment(std::make_pair(Range {50, 83}, Range {82, 83})));
+    EXPECT_TRUE(cleanup::checkContainment(std::make_pair(Range {5, 47}, Range {5, 5})));
+    EXPECT_TRUE(cleanup::checkContainment(std::make_pair(Range {78, 78}, Range {55, 79})));
+    EXPECT_TRUE(cleanup::checkContainment(std::make_pair(Range {43, 48}, Range {12, 99})));
+    EXPECT_TRUE(cleanup::checkContainment(std::make_pair(Range {4, 39}, Range {4, 77})));
+    EXPECT_TRUE(cleanup::checkContainment(std::make_pair(Range {4, 77}, Range {12, 77})));
 }

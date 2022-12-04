@@ -32,4 +32,16 @@ std::vector<Assignment> parseInputs(std::istream& stream)
     return utils::parsing::parseSingleLineInputsToType<Assignment>(
         stream, [](std::string const& str) { return getAssignmentFromString(str); });
 }
+
+bool checkContainment(Assignment const& ass)
+{
+    if(ass.first.start <= ass.second.start)
+    {
+        return (ass.first.end >= ass.second.end);
+    }
+    else
+    {
+        return (ass.first.end <= ass.second.end);
+    }
+}
 }  // namespace cleanup

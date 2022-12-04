@@ -35,3 +35,14 @@ TEST(Day4Tests, ConvertLineToAssignment)
     EXPECT_EQ(cleanup::getAssignmentFromString("2-4,6-8"), std::make_pair(Range {2, 4}, Range {6, 8}));
     EXPECT_THROW(cleanup::getAssignmentFromString("asdfa2-4,6-8"), std::logic_error);
 }
+
+TEST(Day4Tests, CheckContainment)
+{
+    using cleanup::Range;
+    EXPECT_FALSE(cleanup::checkContainment(std::make_pair(Range {2, 4}, Range {6, 8})));
+    EXPECT_FALSE(cleanup::checkContainment(std::make_pair(Range {2, 3}, Range {4, 5})));
+    EXPECT_FALSE(cleanup::checkContainment(std::make_pair(Range {5, 7}, Range {7, 9})));
+    EXPECT_TRUE(cleanup::checkContainment(std::make_pair(Range {2, 8}, Range {3, 7})));
+    EXPECT_TRUE(cleanup::checkContainment(std::make_pair(Range {6, 6}, Range {4, 6})));
+    EXPECT_FALSE(cleanup::checkContainment(std::make_pair(Range {2, 6}, Range {4, 8})));
+}

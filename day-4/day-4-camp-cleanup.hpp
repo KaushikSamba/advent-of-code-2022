@@ -23,6 +23,8 @@ using Assignment = std::pair<Range, Range>;
 Assignment getAssignmentFromString(std::string const& str);
 
 std::vector<Assignment> parseInputs(std::istream& stream);
+
+bool checkContainment(Assignment const& ass);
 }  // namespace cleanup
 
 #endif  // DAY_4_CAMP_CLEANUP_HPP

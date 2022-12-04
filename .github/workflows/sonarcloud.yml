@@ -20,7 +20,7 @@ jobs:
         uses: SonarSource/sonarcloud-github-c-cpp@v1
       - name: Run build-wrapper
         run: |
-          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} && cmake --build ${{ env.BUILD_WRAPPER_OUT_DIR }} --config ${{env.BUILD_TYPE}}
+          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake -B ${{ env.BUILD_WRAPPER_OUT_DIR }} -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} && cmake --build ${{ env.BUILD_WRAPPER_OUT_DIR }} --config ${{env.BUILD_TYPE}}
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

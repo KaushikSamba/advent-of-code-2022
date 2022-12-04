@@ -12,7 +12,8 @@ RUN apt-get update && \
     g++-11 \
     cmake \
     make \
-    git
+    git \ 
+    clang-format 
 
 RUN update-alternatives --install /usr/bin/g++ g++-11 /usr/bin/g++-11 100 && \
     update-alternatives --install /usr/bin/gcc gcc-11 /usr/bin/gcc-11 100

@@ -60,7 +60,7 @@ TEST(Day4Tests, Part1Result)
     utils::FileHandler inputFile {CURRENT_SOURCE_DIR "/test-input.txt"};
 
     auto parsed = cleanup::parseInputs(inputFile);
-    EXPECT_EQ(cleanup::processAllAssignments(parsed), 2);
+    EXPECT_EQ(cleanup::processAllAssignments(parsed, &cleanup::checkContainment), 2);
 }
 
 TEST(Day4Tests, CheckOverlap)
@@ -80,4 +80,12 @@ TEST(Day4Tests, CheckOverlap)
     EXPECT_TRUE(cleanup::checkAnyOverlap(std::make_pair(Range {43, 48}, Range {12, 99})));
     EXPECT_TRUE(cleanup::checkAnyOverlap(std::make_pair(Range {4, 39}, Range {4, 77})));
     EXPECT_TRUE(cleanup::checkAnyOverlap(std::make_pair(Range {4, 77}, Range {12, 77})));
+}
+
+TEST(Day4Tests, Part2Result)
+{
+    utils::FileHandler inputFile {CURRENT_SOURCE_DIR "/test-input.txt"};
+
+    auto parsed = cleanup::parseInputs(inputFile);
+    EXPECT_EQ(cleanup::processAllAssignments(parsed, &cleanup::checkAnyOverlap), 4);
 }

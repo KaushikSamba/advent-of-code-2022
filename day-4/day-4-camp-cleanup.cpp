@@ -69,10 +69,11 @@ bool checkAnyOverlap(Assignment const& ass)
 }
 
 
-unsigned int processAllAssignments(std::vector<Assignment> const& assignments)
+unsigned int processAllAssignments(std::vector<Assignment> const&         assignments,
+                                   std::function<bool(Assignment const&)> func)
 {
-    return std::accumulate(assignments.begin(), assignments.end(), 0, [](unsigned int val, Assignment const& ass) {
-        return (val + checkContainment(ass));
+    return std::accumulate(assignments.begin(), assignments.end(), 0, [&func](unsigned int val, Assignment const& ass) {
+        return (val + func(ass));
     });
 }
 }  // namespace cleanup

@@ -1,6 +1,7 @@
 #ifndef DAY_4_CAMP_CLEANUP_HPP
 #define DAY_4_CAMP_CLEANUP_HPP
 
+#include <functional>
 #include <istream>
 #include <utility>
 #include <vector>
@@ -27,7 +28,8 @@ std::vector<Assignment> parseInputs(std::istream& stream);
 bool checkContainment(Assignment const& ass);
 bool checkAnyOverlap(Assignment const& ass);
 
-unsigned int processAllAssignments(std::vector<Assignment> const& assignments);
+unsigned int processAllAssignments(std::vector<Assignment> const&         assignments,
+                                   std::function<bool(Assignment const&)> func);
 
 }  // namespace cleanup
 

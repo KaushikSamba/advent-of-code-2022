@@ -41,7 +41,7 @@ Configuration parseStartingConfiguration(std::vector<std::string> const& configS
 std::vector<Instruction> parseInstructions(std::vector<std::string> const& instructionsStr)
 {
     std::vector<Instruction> result;
-    std::regex               reg {"move (\\d) from (\\d) to (\\d)"};
+    std::regex               reg {"move (\\d+) from (\\d) to (\\d)"};
 
     std::transform(
         instructionsStr.begin(), instructionsStr.end(), std::back_inserter(result), [&reg](std::string const& str) {

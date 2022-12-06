@@ -7,7 +7,21 @@
 
 namespace supply
 {
-std::vector<std::stack<char>> parseStartingConfiguration(std::vector<std::string> const& configStr);
+using Configuration = std::vector<std::stack<char>>;
+
+Configuration parseStartingConfiguration(std::vector<std::string> const& configStr);
+
+struct Instruction
+{
+    std::size_t numberOfCrates;
+    std::size_t source;
+    std::size_t dest;
+};
+
+std::vector<Instruction> parseInstructions(std::vector<std::string> const& instructionsStr);
+
+std::pair<Configuration, std::vector<Instruction>> parseInputs(std::istream& stream);
+
 
 }  // namespace supply
 

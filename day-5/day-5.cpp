@@ -84,4 +84,16 @@ void processInstruction(Configuration& config, Instruction const& instr)
     }
 }
 
+void processAllInstructions(Configuration& config, std::vector<Instruction> const& instructions)
+{
+    std::for_each(
+        instructions.begin(), instructions.end(), [&config](auto const& i) { processInstruction(config, i); });
+}
+
+std::string getTopsOfStacks(Configuration const& config)
+{
+    std::string result;
+    std::for_each(config.begin(), config.end(), [&result](auto& stack) { result.push_back(stack.top()); });
+    return result;
+}
 }  // namespace supply

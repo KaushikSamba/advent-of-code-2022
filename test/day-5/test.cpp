@@ -132,3 +132,28 @@ TEST(Day5Tests, ProcessInstruction)
         EXPECT_EQ(config, expectedConfigs);
     }
 }
+
+TEST(Day5Tests, ProcessAllInstructions)
+{
+    utils::FileHandler inputFile {CURRENT_SOURCE_DIR "/test-input.txt"};
+    auto [config, instructions] = supply::parseInputs(inputFile);
+
+    supply::Configuration expectedConfigs = {
+        std::stack(std::deque {'C'}),
+        std::stack(std::deque {'M'}),
+        std::stack(std::deque {'P', 'D', 'N', 'Z'}),
+    };
+
+    supply::processAllInstructions(config, instructions);
+    EXPECT_EQ(config, expectedConfigs);
+}
+
+TEST(Day5Tests, CheckTops)
+{
+    auto res = supply::getTopsOfStacks(supply::Configuration {
+        std::stack(std::deque {'Z', 'N'}),
+        std::stack(std::deque {'M', 'C', 'D'}),
+        std::stack(std::deque {'P'}),
+    });
+    EXPECT_EQ(res, "NDP");
+}

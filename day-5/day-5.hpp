@@ -24,6 +24,9 @@ std::pair<Configuration, std::vector<Instruction>> parseInputs(std::istream& str
 
 void processInstruction(Configuration& config, Instruction const& instr);
 
+void processAllInstructions(Configuration& config, std::vector<Instruction> const& instructions);
+
+std::string getTopsOfStacks(Configuration const& config);
 }  // namespace supply
 
 #endif  // DAY_5_SUPPLY_STACKS_HPP

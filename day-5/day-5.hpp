@@ -22,6 +22,7 @@ std::vector<Instruction> parseInstructions(std::vector<std::string> const& instr
 
 std::pair<Configuration, std::vector<Instruction>> parseInputs(std::istream& stream);
 
+void processInstruction(Configuration& config, Instruction const& instr);
 
 }  // namespace supply
 

@@ -75,10 +75,10 @@ TEST(Day5Tests, parseInstructions)
 
     using supply::Instruction;
     std::vector<Instruction> expected = {
-        Instruction {1, 2, 1},
-        Instruction {3, 1, 3},
-        Instruction {2, 2, 1},
-        Instruction {1, 1, 2},
+        Instruction {1, 1, 0},
+        Instruction {3, 0, 2},
+        Instruction {2, 1, 0},
+        Instruction {1, 0, 1},
     };
 
     auto parsed = supply::parseInstructions(input);
@@ -98,11 +98,37 @@ TEST(Day5Tests, parseInputFile)
     };
     using supply::Instruction;
     std::vector<Instruction> expectedInstructions = {
-        Instruction {1, 2, 1},
-        Instruction {3, 1, 3},
-        Instruction {2, 2, 1},
-        Instruction {1, 1, 2},
+        Instruction {1, 1, 0},
+        Instruction {3, 0, 2},
+        Instruction {2, 1, 0},
+        Instruction {1, 0, 1},
     };
     EXPECT_EQ(parsed.first, expectedConfigs);
     EXPECT_EQ(parsed.second, expectedInstructions);
+}
+
+TEST(Day5Tests, ProcessInstruction)
+{
+    utils::FileHandler inputFile {CURRENT_SOURCE_DIR "/test-input.txt"};
+    auto [config, _] = supply::parseInputs(inputFile);
+
+    {
+        supply::processInstruction(config, supply::Instruction {1, 1, 0});
+        supply::Configuration expectedConfigs = {
+            std::stack(std::deque {'Z', 'N', 'D'}),
+            std::stack(std::deque {'M', 'C'}),
+            std::stack(std::deque {'P'}),
+        };
+        EXPECT_EQ(config, expectedConfigs);
+    }
+
+    {
+        supply::processInstruction(config, supply::Instruction {3, 0, 2});
+        supply::Configuration expectedConfigs = {
+            std::stack<char>(),
+            std::stack(std::deque {'M', 'C'}),
+            std::stack(std::deque {'P', 'D', 'N', 'Z'}),
+        };
+        EXPECT_EQ(config, expectedConfigs);
+    }
 }

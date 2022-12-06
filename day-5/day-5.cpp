@@ -56,8 +56,8 @@ std::vector<Instruction> parseInstructions(std::vector<std::string> const& instr
             }
             return Instruction {
                 std::stoul(matches[1].str()),
-                std::stoul(matches[2].str()),
-                std::stoul(matches[3].str()),
+                std::stoul(matches[2].str()) - 1,
+                std::stoul(matches[3].str()) - 1,
             };
         });
 
@@ -73,4 +73,15 @@ std::pair<Configuration, std::vector<Instruction>> parseInputs(std::istream& str
 
     return {(std::move(startingConfigs)), std::move(instructions)};
 }
+
+void processInstruction(Configuration& config, Instruction const& instr)
+{
+    for(std::size_t i = 1; i <= instr.numberOfCrates; ++i)
+    {
+        auto crate = config.at(instr.source).top();
+        config.at(instr.source).pop();
+        config.at(instr.dest).push(crate);
+    }
+}
+
 }  // namespace supply

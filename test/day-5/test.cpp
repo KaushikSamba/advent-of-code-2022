@@ -144,7 +144,7 @@ TEST(Day5Tests, ProcessAllInstructions)
         std::stack(std::deque {'P', 'D', 'N', 'Z'}),
     };
 
-    supply::processAllInstructions(config, instructions);
+    supply::processAllInstructions(config, instructions, &supply::processInstruction);
     EXPECT_EQ(config, expectedConfigs);
 }
 
@@ -156,4 +156,45 @@ TEST(Day5Tests, CheckTops)
         std::stack(std::deque {'P'}),
     });
     EXPECT_EQ(res, "NDP");
+}
+
+TEST(Day5Tests, ProcessInstructionBigCrane)
+{
+    utils::FileHandler inputFile {CURRENT_SOURCE_DIR "/test-input.txt"};
+    auto [config, _] = supply::parseInputs(inputFile);
+
+    {
+        supply::processInstructionBigCrane(config, supply::Instruction {1, 1, 0});
+        supply::Configuration expectedConfigs = {
+            std::stack(std::deque {'Z', 'N', 'D'}),
+            std::stack(std::deque {'M', 'C'}),
+            std::stack(std::deque {'P'}),
+        };
+        EXPECT_EQ(config, expectedConfigs);
+    }
+
+    {
+        supply::processInstructionBigCrane(config, supply::Instruction {3, 0, 2});
+        supply::Configuration expectedConfigs = {
+            std::stack<char>(),
+            std::stack(std::deque {'M', 'C'}),
+            std::stack(std::deque {'P', 'Z', 'N', 'D'}),
+        };
+        EXPECT_EQ(config, expectedConfigs);
+    }
+}
+
+TEST(Day5Tests, ProcessAllInstructionsBigCrane)
+{
+    utils::FileHandler inputFile {CURRENT_SOURCE_DIR "/test-input.txt"};
+    auto [config, instructions] = supply::parseInputs(inputFile);
+
+    supply::Configuration expectedConfigs = {
+        std::stack(std::deque {'M'}),
+        std::stack(std::deque {'C'}),
+        std::stack(std::deque {'P', 'Z', 'N', 'D'}),
+    };
+
+    supply::processAllInstructions(config, instructions, &supply::processInstructionBigCrane);
+    EXPECT_EQ(config, expectedConfigs);
 }

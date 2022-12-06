@@ -84,10 +84,32 @@ void processInstruction(Configuration& config, Instruction const& instr)
     }
 }
 
-void processAllInstructions(Configuration& config, std::vector<Instruction> const& instructions)
+void processInstructionBigCrane(Configuration& config, Instruction const& instr)
 {
-    std::for_each(
-        instructions.begin(), instructions.end(), [&config](auto const& i) { processInstruction(config, i); });
+    std::vector<char> popped;
+    for(std::size_t i = 1; i <= instr.numberOfCrates; ++i)
+    {
+        popped.push_back(config.at(instr.source).top());
+        config.at(instr.source).pop();
+    }
+
+    if(popped.size() == 0)
+    {
+        throw std::runtime_error("what the fuck!");
+    }
+
+    for(auto it = popped.rbegin(); it != popped.rend(); ++it)
+    {
+        config.at(instr.dest).push(*it);
+    }
+}
+
+
+void processAllInstructions(Configuration&                  config,
+                            std::vector<Instruction> const& instructions,
+                            std::function<void(supply::Configuration& config, const supply::Instruction& instr)> func)
+{
+    std::for_each(instructions.begin(), instructions.end(), [&config, &func](auto const& i) { func(config, i); });
 }
 
 std::string getTopsOfStacks(Configuration const& config)

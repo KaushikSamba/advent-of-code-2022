@@ -1,6 +1,7 @@
 #ifndef DAY_5_SUPPLY_STACKS_HPP
 #define DAY_5_SUPPLY_STACKS_HPP
 
+#include <functional>
 #include <istream>
 #include <stack>
 #include <vector>
@@ -23,8 +24,11 @@ std::vector<Instruction> parseInstructions(std::vector<std::string> const& instr
 std::pair<Configuration, std::vector<Instruction>> parseInputs(std::istream& stream);
 
 void processInstruction(Configuration& config, Instruction const& instr);
+void processInstructionBigCrane(Configuration& config, Instruction const& instr);
 
-void processAllInstructions(Configuration& config, std::vector<Instruction> const& instructions);
+void processAllInstructions(Configuration&                  config,
+                            std::vector<Instruction> const& instructions,
+                            std::function<void(supply::Configuration& config, const supply::Instruction& instr)> func);
 
 std::string getTopsOfStacks(Configuration const& config);
 }  // namespace supply
